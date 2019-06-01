@@ -36,11 +36,11 @@ class SearchResult():
         self.facet_counts=facet_counts
         self.facet_pivot=facet_pivot
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = SearchResult()
         if 'facet_pivot' in json_obj:
             obj.facet_pivot = json_obj['facet_pivot']
@@ -82,11 +82,11 @@ class AbstractPropertyValue():
         self.pred=pred
         self.xrefs=xrefs
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = AbstractPropertyValue()
         if 'pred' in json_obj:
             obj.pred = json_obj['pred']
@@ -110,11 +110,11 @@ class SynonymPropertyValue(AbstractPropertyValue):
                  **kwargs):
         super(SynonymPropertyValue, self).__init__(id, **kwargs)
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = SynonymPropertyValue()
         if 'pred' in json_obj:
             obj.pred = json_obj['pred']
@@ -138,11 +138,11 @@ class AssociationPropertyValue(AbstractPropertyValue):
                  **kwargs):
         super(AssociationPropertyValue, self).__init__(id, **kwargs)
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = AssociationPropertyValue()
         if 'pred' in json_obj:
             obj.pred = json_obj['pred']
@@ -174,11 +174,11 @@ class Node():
         self.id=id
         self.lbl=lbl
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = Node()
         if 'lbl' in json_obj:
             obj.lbl = json_obj['lbl']
@@ -216,11 +216,11 @@ class Edge():
         self.pred=pred
         self.obj=obj
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = Edge()
         if 'pred' in json_obj:
             obj.pred = json_obj['pred']
@@ -254,11 +254,11 @@ class Graph():
         self.nodes=nodes
         self.edges=edges
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = Graph()
         if 'nodes' in json_obj:
             obj.nodes = [Node.from_json(x) for x in json_obj['nodes']]
@@ -306,11 +306,11 @@ class NamedObject():
         self.synonyms=synonyms
         self.description=description
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = NamedObject()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -336,11 +336,11 @@ class Relation(NamedObject):
                  **kwargs):
         super(Relation, self).__init__(id, **kwargs)
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = Relation()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -351,6 +351,7 @@ class Relation(NamedObject):
         if 'categories' in json_obj:
             obj.categories = [x for x in json_obj['categories']]
         return obj
+
 
 class Publication(NamedObject):
     """
@@ -366,11 +367,11 @@ class Publication(NamedObject):
                  **kwargs):
         super(Publication, self).__init__(id, **kwargs)
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = Publication()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -381,6 +382,7 @@ class Publication(NamedObject):
         if 'categories' in json_obj:
             obj.categories = [x for x in json_obj['categories']]
         return obj
+
 
 class Taxon():
     """
@@ -404,17 +406,18 @@ class Taxon():
         self.id=id
         self.label=label
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = Taxon()
         if 'label' in json_obj:
             obj.label = json_obj['label']
         if 'id' in json_obj:
             obj.id = json_obj['id']
         return obj
+
 
 class BioObject(NamedObject):
     """
@@ -442,11 +445,11 @@ class BioObject(NamedObject):
         self.clinical_modifiers = clinical_modifiers
         self.association_counts = association_counts
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = BioObject()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -467,6 +470,7 @@ class BioObject(NamedObject):
         if 'association_counts' in json_obj:
             obj.association_counts = json_obj['association_counts']
         return obj
+
 
 class AnnotationExtension():
     """
@@ -493,16 +497,18 @@ class AnnotationExtension():
         self.filler=filler
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = AnnotationExtension()
         if 'filler' in json_obj:
             obj.filler = NamedObject.from_json(json_obj['filler'])
         if 'relation_chain' in json_obj:
             obj.relation_chain = [Relation.from_json(x) for x in json_obj['relation_chain']]
         return obj
+
 
 class Association():
     """
@@ -586,11 +592,11 @@ class Association():
         self.provided_by=provided_by
         self.publications=publications
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = Association()
         if 'publications' in json_obj:
             obj.publications = [Publication.from_json(x) for x in json_obj['publications']]
@@ -618,6 +624,7 @@ class Association():
             obj.qualifiers = [AssociationPropertyValue.from_json(x) for x in json_obj['qualifiers']]
         return obj
 
+
 class ChainedAssociation():
     """
     ChainedAssociation
@@ -642,17 +649,18 @@ class ChainedAssociation():
         self.proximal_association=proximal_association
         self.distal_associations=distal_associations
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = ChainedAssociation()
         if 'proximal_association' in json_obj:
             obj.proximal_association = Association.from_json(json_obj['proximal_association'])
         if 'distal_associations' in json_obj:
             obj.distal_associations = [Association.from_json(x) for x in json_obj['distal_associations']]
         return obj
+
 
 class CompactAssociationSet():
     """
@@ -684,11 +692,11 @@ class CompactAssociationSet():
         self.relation=relation
         self.objects=objects
 
-
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = CompactAssociationSet()
         if 'objects' in json_obj:
             obj.objects = [x for x in json_obj['objects']]
@@ -697,6 +705,7 @@ class CompactAssociationSet():
         if 'relation' in json_obj:
             obj.relation = json_obj['relation']
         return obj
+
 
 class AssociationResults(SearchResult):
     """
@@ -731,10 +740,11 @@ class AssociationResults(SearchResult):
         self.objects=objects
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = AssociationResults()
         if 'facet_pivot' in json_obj:
             obj.facet_pivot = json_obj['facet_pivot']
@@ -751,6 +761,7 @@ class AssociationResults(SearchResult):
         if 'associations' in json_obj:
             obj.associations = [Association.from_json(x) for x in json_obj['associations']]
         return obj
+
 
 class SequencePosition():
     """
@@ -773,16 +784,18 @@ class SequencePosition():
         self.reference=reference
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = SequencePosition()
         if 'position' in json_obj:
             obj.position = json_obj['position']
         if 'reference' in json_obj:
             obj.reference = json_obj['reference']
         return obj
+
 
 class SequenceLocation(BioObject):
     """
@@ -807,10 +820,11 @@ class SequenceLocation(BioObject):
         self.end=end
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = SequenceLocation()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -827,6 +841,7 @@ class SequenceLocation(BioObject):
         if 'begin' in json_obj:
             obj.begin = SequencePosition.from_json(json_obj['begin'])
         return obj
+
 
 class Seq(BioObject):
     """
@@ -867,10 +882,11 @@ class Seq(BioObject):
         self.seqlen=seqlen
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = Seq()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -891,6 +907,7 @@ class Seq(BioObject):
         if 'seqlen' in json_obj:
             obj.seqlen = json_obj['seqlen']
         return obj
+
 
 class SequenceFeature(BioObject):
     """
@@ -919,10 +936,11 @@ class SequenceFeature(BioObject):
         self.homology_associations=homology_associations
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = SequenceFeature()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -941,6 +959,7 @@ class SequenceFeature(BioObject):
         if 'locations' in json_obj:
             obj.locations = [SequenceLocation.from_json(x) for x in json_obj['locations']]
         return obj
+
 
 class Gene(BioObject):
     """
@@ -987,10 +1006,11 @@ class Gene(BioObject):
         self.genotype_associations=genotype_associations
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = Gene()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -1014,6 +1034,7 @@ class Gene(BioObject):
             obj.disease_associations = [Association.from_json(x) for x in json_obj['disease_associations']]
         return obj
 
+
 class GeneProduct(BioObject):
     """
     GeneProduct
@@ -1033,10 +1054,12 @@ class GeneProduct(BioObject):
         self.genes=genes
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
+
         obj = GeneProduct()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -1051,6 +1074,7 @@ class GeneProduct(BioObject):
         if 'genes' in json_obj:
             obj.genes = [Gene.from_json(x) for x in json_obj['genes']]
         return obj
+
 
 class Transcript(BioObject):
     """
@@ -1071,10 +1095,12 @@ class Transcript(BioObject):
         self.genes=genes
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
+
         obj = Transcript()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -1121,10 +1147,12 @@ class Genotype(BioObject):
         self.variant_associations=variant_associations
 
 
-    """
-    Create an object from a json representation
-    """
+
+    @staticmethod
     def from_json(json_obj={}):
+        """
+            Create an object from a json representation
+        """
         obj = Genotype()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -1146,6 +1174,7 @@ class Genotype(BioObject):
             obj.phenotype_associations = [Association.from_json(x) for x in json_obj['phenotype_associations']]
         return obj
 
+
 class Allele(Genotype):
     """
     Allele
@@ -1161,10 +1190,12 @@ class Allele(Genotype):
         super(Allele, self).__init__(id, **kwargs)
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
+
         obj = Allele()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -1186,6 +1217,7 @@ class Allele(Genotype):
             obj.phenotype_associations = [Association.from_json(x) for x in json_obj['phenotype_associations']]
         return obj
 
+
 class MolecularComplex(BioObject):
     """
     MolecularComplex
@@ -1205,10 +1237,11 @@ class MolecularComplex(BioObject):
         self.genes=genes
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = MolecularComplex()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -1223,6 +1256,7 @@ class MolecularComplex(BioObject):
         if 'genes' in json_obj:
             obj.genes = [Gene.from_json(x) for x in json_obj['genes']]
         return obj
+
 
 class Substance(BioObject):
     """
@@ -1255,10 +1289,11 @@ class Substance(BioObject):
         self.smiles=smiles
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = Substance()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -1279,6 +1314,7 @@ class Substance(BioObject):
         if 'inchi_key' in json_obj:
             obj.inchi_key = [x for x in json_obj['inchi_key']]
         return obj
+
 
 class PhylogeneticNode(NamedObject):
     """
@@ -1311,10 +1347,11 @@ class PhylogeneticNode(NamedObject):
         self.branch_length=branch_length
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = PhylogeneticNode()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -1334,6 +1371,7 @@ class PhylogeneticNode(NamedObject):
             obj.branch_length = json_obj['branch_length']
         return obj
 
+
 class PhylogeneticTree(NamedObject):
     """
     PhylogeneticTree
@@ -1349,10 +1387,12 @@ class PhylogeneticTree(NamedObject):
         super(PhylogeneticTree, self).__init__(id, **kwargs)
 
 
-    """
-    Create an object from a json representation
-    """
+
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = PhylogeneticTree()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
@@ -1363,6 +1403,7 @@ class PhylogeneticTree(NamedObject):
         if 'categories' in json_obj:
             obj.categories = [x for x in json_obj['categories']]
         return obj
+
 
 class ClinicalIndividual(NamedObject):
     """
@@ -1379,10 +1420,11 @@ class ClinicalIndividual(NamedObject):
         super(ClinicalIndividual, self).__init__(id, **kwargs)
 
 
-    """
-    Create an object from a json representation
-    """
+    @staticmethod
     def from_json(json_obj={}):
+        """
+        Create an object from a json representation
+        """
         obj = ClinicalIndividual()
         if 'synonyms' in json_obj:
             obj.synonyms = [SynonymPropertyValue.from_json(x) for x in json_obj['synonyms']]
